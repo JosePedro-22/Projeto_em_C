@@ -86,11 +86,11 @@ int valida_lista(new_type *lista){
 }
 
 int new_id(new_type *lista){
-    new_type *p;//declarar ponteiro auxiliar p
+    new_type *p_aux;
     int maxId=0;
-    for(p = lista; p != NULL; p = p -> prox){
-        if(maxId < p->id)
-            maxId = p->id;
+    for(p_aux = lista; p_aux != NULL; p_aux = p_aux -> prox){
+        if(maxId < p_aux->id)
+            maxId = p_aux->id;
     }
     return maxId;
 }
@@ -170,10 +170,6 @@ void buy_ticket(){
         printf("******************** Coloque os dados! ********************\n");
         printf("********************************************************\n\n");
 
-        //int id;
-        //char descricao[100];
-        //float valor;
-
         int id, estadia;
         float valor_passagem;
         char lo_part[101], lo_dest[101];
@@ -224,8 +220,6 @@ void buy_ticket(){
         getchar();
 
         valor_passagem = valor_ticket(estadia);
-
-        //scanf("%f",&valor);
         
 
         listaGeral = new_no(listaGeral,id,estadia,valor_passagem,lo_part,lo_dest);
@@ -259,7 +253,7 @@ void list_ticket(){
             print_list(listaGeral);
 
         }else{
-            printf("\nNão existem registros cadastrados.\n");
+            printf("\nNAO EXISTEM REGISTRO DO TICKET CADASTRADO.\n");
         }
 
         printf("\nDeseja voltar ao menu principal? (s/n) ");
@@ -272,42 +266,77 @@ void list_ticket(){
 }
 
 void edit_ticket(){
-    /*char op;
+    char op;
     int id;
-    int achou = 0;
+    int ok = 0;
     do{
         system("cls");
         printf("********************************************************\n");
         printf("******************** Coloque os dados! ********************\n");
         printf("********************************************************\n\n");
 
-        printf("Digite o codigo do item: ");
+        printf("Digite o codigo do ticket comprado: ");
         scanf("%d", &id);
 
-        new_type *p;
-        char descricao[100];
-        float valor;
+        new_type *p_aux;
+        int estadia;
+        float valor_passagem;
+        char lo_part[101], lo_dest[101];
 
-        for(p = listaGeral; p != NULL; p = p -> prox){
-            if(p->id == id){
-                achou = 1;
+        for(p_aux = listaGeral; p_aux != NULL; p_aux = p_aux -> prox){
+            if(p_aux->id == id){
+                ok = 1;
 
                 fflush(stdin);
-                printf("Digite o valor do item: ");
-                scanf("%f",&valor);
+
+                printf("\n\nDe onde deseja partir ?\n");
+                printf("1. SAO LUIS\n");
+                printf("2. SAO PAULO\n");
+                printf("3. RECIFE\n");
+                printf("4. SALVADOR\n");
+                printf("5. RIO DE JANEIRO\n");
+                printf("6. GRAMADO\n");
+                printf("7. OURO PRETO\n");
+                printf("8. FORTALEZA\n");
+                printf("9. MACEIO\n");
+                printf("10. BRASILIA\n");
+                printf("\nDigite o local!\n\n");
+
+                fgets(lo_part, sizeof lo_part, stdin);
+                strcpy(p_aux->lo_part, lo_part);
+
+                fflush(stdin);
+
+                printf("\n\nPara onde deseja ir chegar ?\n");
+                printf("1. SAO LUIS\n");
+                printf("2. SAO PAULO\n");
+                printf("3. RECIFE\n");
+                printf("4. SALVADOR\n");
+                printf("5. RIO DE JANEIRO\n");
+                printf("6. GRAMADO\n");
+                printf("7. OURO PRETO\n");
+                printf("8. FORTALEZA\n");
+                printf("9. MACEIO\n");
+                printf("10. BRASILIA\n");
+                printf("\nDigite o local!\n\n");
+
+                fgets(lo_dest, sizeof lo_dest, stdin);
+                strcpy(p_aux->lo_dest, lo_dest);
+
+                fflush(stdin);
+
+                printf("\n\nDias de Estadia\n");
+                scanf("%d",&estadia);
                 getchar();
 
-                fflush(stdin);
-                printf("\nDigite a descrição do item: ");
-                fgets(descricao, sizeof descricao, stdin);
+                valor_passagem = valor_ticket(estadia);
 
-                strcpy(p->descricao, descricao);
-                p->valor = valor;
+                p_aux->estadia = estadia;
             }
         }
-        if(!achou){
+        if(!ok){
             printf("\n*********************************************");
-            printf("\nNão foi encontrado nenhum item com o id %d.", id);
+            printf("\nNAO ENCONTRAMOS NENHUM TICKET COM ESSE ID: %d.", id);
             printf("\n*********************************************\n");
         }
 
@@ -318,7 +347,7 @@ void edit_ticket(){
     }while(op=='s');
 
     menu_global();
-    */
+    
 }
 
 void delet_ticket(){
@@ -331,7 +360,7 @@ void delet_ticket(){
     printf("******************** cancelando a passagem! ********************\n");
     printf("********************************************************\n\n");
 
-        printf("Digite o codigo do item a ser EXCLUÍDO: ");
+        printf("DIGITE O CODIGO DO TICKET A SER CANCELADO: ");
         scanf("%d", &id);
 
         new_type *p;
@@ -345,8 +374,10 @@ void delet_ticket(){
             printf("\nListagem de itens atualizada:\n");
             print_list(listaGeral);
 
-        }else{
-            printf("\nNão existem registros cadastrados.\n");
+        }else if(size_list(listaGeral) == 0){
+
+            printf("\nNAO EXISTEM REGISTRO DO TICKET CADASTRADO\n ");
+            printf("OU TODOS OS TICKET FORAM CANCELADO.\n");
         }
 
         fflush(stdin);
