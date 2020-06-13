@@ -230,7 +230,7 @@ void buy_ticket(){
         printf("********************************************************\n\n");
         print_list(listaGeral);
 
-        printf("\nDeseja cadastrar um novo item? (s/n) ");
+        printf("\nDESEJA COMPRAR UM NOVO TICKET ? (s/n)");
         scanf("%s", &op);
         getchar();
 
@@ -340,7 +340,7 @@ void edit_ticket(){
             printf("\n*********************************************\n");
         }
 
-        printf("\nDeseja realizar outra busca? (s/n) ");
+        printf("\nDESEJA REALIZAR OUTRA BUSCA ? (s/n)");
         scanf("%s", &op);
         getchar();
 
@@ -381,7 +381,7 @@ void delet_ticket(){
         }
 
         fflush(stdin);
-        printf("\nDeseja realizar outra busca? (s/n) ");
+        printf("\nDESEJA REALIZAR OUTRA BUSCA ? (s/n) ");
         scanf("%s", &op);
         getchar();
 
@@ -407,11 +407,11 @@ void menu_global(){
         printf("\n");
         printf("                  Escolha dentre as opcoes abaixo:\n");
         printf("-----------------------------------------------------------------\n");
-        printf("                  1 - CADASTRAR ITEM;\n");
-        printf("                  2 - LISTAR ITENS;\n");
-        printf("                  3 - ALTERAR ITEM;\n");
-        printf("                  4 - EXCLUIR ITEM;\n");
-        printf("                  5 - SAIR DO SISTEMA\n");
+        printf("                  1 - COMPRAR TICKET\n");
+        printf("                  2 - MEUS TICKETS\n");
+        printf("                  3 - MODIFICAR TICKET\n");
+        printf("                  4 - CANCELAR TICKET\n");
+        printf("                  5 - EXIT SYSTEM\n");
         printf("-----------------------------------------------------------------\n");
             
         printf("                  ");
